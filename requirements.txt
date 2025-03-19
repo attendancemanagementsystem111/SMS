@@ -24,3 +24,4 @@ soupsieve==2.6
 typing-extensions==4.12.2
 urllib3==2.3.0
 wikipedia==1.4.0
+pywhatkit
