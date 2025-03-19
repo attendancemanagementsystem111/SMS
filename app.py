@@ -14,9 +14,9 @@ import base64
 import datetime  
 # import pywhatkit as kit
 from datetime import datetime
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 import time
-import pyautogui
+# import pyautogui
 
 
 app = Flask(__name__, template_folder='/db with AMS/templates')
@@ -218,7 +218,7 @@ def create_account():
             conn.close()
 
             # Send welcome email
-            send_welcome_email(gmail, name)
+            # send_welcome_email(gmail, name)
 
             flash("Registration successful! Please log in.", "success")
             return redirect(url_for('login'))
@@ -230,33 +230,33 @@ def create_account():
 
     return render_template('create_account.html')
 
-def send_welcome_email(to_email, name):
-    try:
-        msg = Message("Welcome to AMS", recipients=[to_email])
-        msg.body = f"""
-        Hello {name},
+# def send_welcome_email(to_email, name):
+#     try:
+#         msg = Message("Welcome to AMS", recipients=[to_email])
+#         msg.body = f"""
+#         Hello {name},
 
-        Welcome to the Attendance Management System (AMS)! Your account has been successfully created.
+#         Welcome to the Attendance Management System (AMS)! Your account has been successfully created.
 
-        You can now log in and start using the system.
+#         You can now log in and start using the system.
 
-        Best Regards,
-        AMS Team
-        """
-        mail.send(msg)
-        print(f"Email sent successfully to {to_email}")
-    except Exception as e:
-        print(f"Error sending email: {e}")  
+#         Best Regards,
+#         AMS Team
+#         """
+#         mail.send(msg)
+#         print(f"Email sent successfully to {to_email}")
+#     except Exception as e:
+#         print(f"Error sending email: {e}")  
 
-@app.route('/test-email')
-def test_email():
-    try:
-        msg = Message("Flask-Mail Test", recipients=["recipient@gmail.com"])
-        msg.body = "This is a test email from Flask-Mail!"
-        mail.send(msg)
-        return "✅ Test email sent successfully!"
-    except Exception as e:
-        return f"❌ Error sending email: {e}"
+# @app.route('/test-email')
+# def test_email():
+#     try:
+#         msg = Message("Flask-Mail Test", recipients=["recipient@gmail.com"])
+#         msg.body = "This is a test email from Flask-Mail!"
+#         mail.send(msg)
+#         return "✅ Test email sent successfully!"
+#     except Exception as e:
+#         return f"❌ Error sending email: {e}"
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
