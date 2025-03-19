@@ -5,5 +5,5 @@ Flask-SQLAlchemy==3.0.3
 Flask-Mail==0.9.1
 pywhatkit==5.2
 pyautogui==0.9.53
-Werkzeug==3.0.3
+Werkzeug==2.3.8
 gunicorn
