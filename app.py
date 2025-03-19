@@ -12,7 +12,7 @@ from datetime import timedelta
 from io import BytesIO
 import base64
 import datetime  
-import pywhatkit as kit
+# import pywhatkit as kit
 from datetime import datetime
 from flask_mail import Mail, Message
 import time
@@ -1241,85 +1241,85 @@ def users():
 def view_users_data():
     return render_template('all_users_data.html')
 
-def get_phone_number(rollno):
-    """Fetch phone number from users table based on roll number."""
-    conn = sqlite3.connect("ams.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT phone FROM users WHERE rollno = ?", (rollno,))
-    result = cursor.fetchone()
-    conn.close()
-    if result:
-        phone_number = result[0].strip()
-        if not phone_number.startswith("+"):
-            phone_number = "+91" + phone_number  # Ensure country code is included
-        return phone_number
-    return None
+# def get_phone_number(rollno):
+#     """Fetch phone number from users table based on roll number."""
+#     conn = sqlite3.connect("ams.db")
+#     cursor = conn.cursor()
+#     cursor.execute("SELECT phone FROM users WHERE rollno = ?", (rollno,))
+#     result = cursor.fetchone()
+#     conn.close()
+#     if result:
+#         phone_number = result[0].strip()
+#         if not phone_number.startswith("+"):
+#             phone_number = "+91" + phone_number  # Ensure country code is included
+#         return phone_number
+#     return None
 
-def has_message_been_sent(rollno):
-    """Check if a message has already been sent today to this roll number."""
-    today = datetime.now().strftime("%Y-%m-%d")
-    conn = sqlite3.connect("ams.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT 1 FROM late WHERE rollno = ? AND date_sent = ?", (rollno, today))
-    result = cursor.fetchone()
-    conn.close()
+# def has_message_been_sent(rollno):
+#     """Check if a message has already been sent today to this roll number."""
+#     today = datetime.now().strftime("%Y-%m-%d")
+#     conn = sqlite3.connect("ams.db")
+#     cursor = conn.cursor()
+#     cursor.execute("SELECT 1 FROM late WHERE rollno = ? AND date_sent = ?", (rollno, today))
+#     result = cursor.fetchone()
+#     conn.close()
     
-    print(f"Checking if message sent for {rollno} on {today}: {result}")  # Debugging
-    return result is not None
+#     print(f"Checking if message sent for {rollno} on {today}: {result}")  # Debugging
+#     return result is not None
 
 
-def store_message(rollno, phone, message):
-    today = datetime.now().strftime("%Y-%m-%d")  # Store only the date (YYYY-MM-DD)
-    conn = sqlite3.connect("ams.db")
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO late (rollno, phone, message, date_sent) 
-        VALUES (?, ?, ?, ?)
-    """, (rollno, phone, message, today))  # Pass exactly 4 values for 4 columns
-    conn.commit()
-    conn.close()
+# def store_message(rollno, phone, message):
+#     today = datetime.now().strftime("%Y-%m-%d")  # Store only the date (YYYY-MM-DD)
+#     conn = sqlite3.connect("ams.db")
+#     cursor = conn.cursor()
+#     cursor.execute("""
+#         INSERT INTO late (rollno, phone, message, date_sent) 
+#         VALUES (?, ?, ?, ?)
+#     """, (rollno, phone, message, today))  # Pass exactly 4 values for 4 columns
+#     conn.commit()
+#     conn.close()
 
-@app.route('/send_whatsapp', methods=['POST'])
-def send_whatsapp():
-    data = request.json  
-    rollno = data.get('rollno')  
-    message = data.get('message')  
+# @app.route('/send_whatsapp', methods=['POST'])
+# def send_whatsapp():
+#     data = request.json  
+#     rollno = data.get('rollno')  
+#     message = data.get('message')  
 
-    if not rollno or not message:
-        return jsonify({"error": "Missing roll number or message"}), 400
+#     if not rollno or not message:
+#         return jsonify({"error": "Missing roll number or message"}), 400
 
-    # ✅ Check if message already sent **today**
-    if has_message_been_sent(rollno):
-        return jsonify({"error": "Message already sent to this user today!"}), 403
+#     # ✅ Check if message already sent **today**
+#     if has_message_been_sent(rollno):
+#         return jsonify({"error": "Message already sent to this user today!"}), 403
 
-    phone_number = get_phone_number(rollno)
+#     phone_number = get_phone_number(rollno)
 
-    if not phone_number:
-        return jsonify({"error": f"Phone number not found for Roll No: {rollno}"}), 404
+#     if not phone_number:
+#         return jsonify({"error": f"Phone number not found for Roll No: {rollno}"}), 404
 
-    try:
-        # ✅ Send message
-        kit.sendwhatmsg_to_group_instantly(phone_number, message)
+#     try:
+#         # ✅ Send message
+#         kit.sendwhatmsg_to_group_instantly(phone_number, message)
 
-        # ✅ Store message details in 'late' table
-        store_message(rollno, phone_number, message)
+#         # ✅ Store message details in 'late' table
+#         store_message(rollno, phone_number, message)
 
-        return jsonify({"success": "Message sent and stored successfully!"})
-    except Exception as e:
-        print(f"Error sending message: {str(e)}")  # Debugging
-        return jsonify({"error": str(e)}), 500
+#         return jsonify({"success": "Message sent and stored successfully!"})
+#     except Exception as e:
+#         print(f"Error sending message: {str(e)}")  # Debugging
+#         return jsonify({"error": str(e)}), 500
 
-@app.route('/get_sent_messages', methods=['GET'])
-def get_sent_messages():
-    """Fetch roll numbers of students who already received a message today."""
-    today = datetime.now().strftime("%Y-%m-%d")
-    conn = sqlite3.connect("ams.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT rollno FROM late WHERE date_sent = ?", (today,))
-    sent_messages = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    # print(f"Sent messages today: {sent_messages}")  # Debugging
-    return jsonify(sent_messages)
+# @app.route('/get_sent_messages', methods=['GET'])
+# def get_sent_messages():
+#     """Fetch roll numbers of students who already received a message today."""
+#     today = datetime.now().strftime("%Y-%m-%d")
+#     conn = sqlite3.connect("ams.db")
+#     cursor = conn.cursor()
+#     cursor.execute("SELECT rollno FROM late WHERE date_sent = ?", (today,))
+#     sent_messages = [row[0] for row in cursor.fetchall()]
+#     conn.close()
+#     # print(f"Sent messages today: {sent_messages}")  # Debugging
+#     return jsonify(sent_messages)
 
 @app.route('/faculty_index')
 def faculty_index():
