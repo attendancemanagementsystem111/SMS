@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card {
+            background-color: #1f2937; /* Dark gray */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            text-align: center;
+            width: 100%;
+            max-width: 300px; /* Ensures second-row card doesn't stretch */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        .description {
+            color: #d1d5db; /* Light gray */
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: white;
+            transition: background-color 0.2s ease-in-out;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Centering Container -->
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold mb-6">Faculty Dashboard</h1>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- First Row (3 Cards) -->
+                <div class="card">
+                    <div class="icon">📊</div>
+                    <h2 class="title">Upload Student Marks</h2>
+                    <p class="description">Upload student marks for assessments.</p>
+                    <a href="/student_marks" class="btn bg-blue-500 hover:bg-blue-700">Upload</a>
+                </div>
+
+                <div class="card">
+                    <div class="icon">📅</div>
+                    <h2 class="title">Upload Class Time Table</h2>
+                    <p class="description">Upload the latest class schedule.</p>
+                    <a href="/time_table" class="btn bg-blue-500 hover:bg-blue-700">Upload</a>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🎓</div>
+                    <h2 class="title">Student Marks</h2>
+                    <p class="description">View detailed Student marks</p>
+                    <a href="/display_marks_by_class_and_section" class="btn bg-blue-500 hover:bg-blue-700">View</a>
+                </div>
+
+                <!-- Second Row (Single Centered Card) -->
+                <div class="col-span-3 flex justify-center">
+                    <div class="card">
+                        <div class="icon">📖</div>
+                        <h2 class="title">View Time Table</h2>
+                        <p class="description">View detailed Class time table</p>
+                        <a href="/display" class="btn bg-blue-500 hover:bg-blue-700">View</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

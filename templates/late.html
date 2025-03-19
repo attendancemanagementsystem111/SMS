@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">User Login Data</h1>
+        
+        <table class="min-w-full bg-gray-800 text-white rounded-lg">
+            <thead>
+                <tr class="bg-gray-700 text-left">
+                    <th class="py-2 px-4">Name</th>
+                    <th class="py-2 px-4">Roll No</th>
+                    <th class="py-2 px-4">Class</th>
+                    <th class="py-2 px-4">Section</th>
+                    <th class="py-2 px-4">Login Time</th>
+                    <th class="py-2 px-4">Login Date</th>
+                    <th class="py-2 px-4">Action</th> <!-- New column for button -->
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    function fetchData() {
+        fetch('/get_login_data')
+            .then(response => response.json())
+            .then(loginData => {
+                fetch('/get_sent_messages')  // Fetch sent message records
+                    .then(response => response.json())
+                    .then(sentMessages => {
+                        const tableBody = document.getElementById('data-table');
+                        tableBody.innerHTML = "";
+
+                        const today = new Date().toISOString().split("T")[0]; 
+
+                        function isAfter10AM(time) {
+                            let match = time.match(/^(\d{1,2}):(\d{2}):(\d{2})\s*(AM|PM)$/i);
+                            if (!match) return false;
+
+                            let hours = parseInt(match[1]);
+                            let minutes = parseInt(match[2]);
+                            let period = match[4].toUpperCase();
+
+                            if (period === "PM" && hours !== 12) hours += 12;
+                            if (period === "AM" && hours === 12) hours = 0;
+
+                            return hours > 10 || (hours === 10 && minutes > 0);
+                        }
+
+                        const fragment = document.createDocumentFragment();
+                        loginData.forEach(user => {
+                            if (user.login_date === today && isAfter10AM(user.login_time)) {  
+                                const row = document.createElement('tr');
+                                row.classList.add("border-b", "border-gray-700");
+
+                                // Check if this user has already received a message
+                                const messageSent = sentMessages.includes(user.rollno);
+
+                                row.innerHTML = `
+                                    <td class="py-2 px-4">${user.name}</td>
+                                    <td class="py-2 px-4">${user.rollno}</td>
+                                    <td class="py-2 px-4">${user.class}</td>
+                                    <td class="py-2 px-4">${user.section}</td>
+                                    <td class="py-2 px-4">${user.login_time}</td>
+                                    <td class="py-2 px-4">${user.login_date}</td>  
+                                    <td class="py-2 px-4">
+                                        ${messageSent 
+                                            ? '<span class="text-green-500 text-xl">✅</span>' 
+                                            : `<button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
+                                                onclick="sendWhatsAppMessage('${user.rollno}', '${user.name}')">Send Message</button>`
+                                        }
+                                    </td>
+                                `;
+                                fragment.appendChild(row);
+                            }
+                        });
+                        tableBody.appendChild(fragment);
+                    })
+                    .catch(error => console.error("Error fetching sent messages:", error));
+            })
+            .catch(error => console.error("Error fetching login data:", error));
+    }
+
+    fetchData();
+    setInterval(fetchData, 1000);
+});
+
+function sendWhatsAppMessage(rollno, name) {
+    const message = `
+
+Dear ${name},
+
+Subject: Late Arrival Notification
+
+We noticed that you arrived late today. Please ensure punctuality in the future, as late arrivals disrupt the class and may affect your attendance record. If there was an unavoidable reason for your delay, kindly inform the concerned authority separately.
+
+This is an auto-generated message. Please do not reply to this message.
+
+Best regards,
+AMS`;
+
+    fetch('/send_whatsapp', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rollno: rollno, message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("✅ WhatsApp message sent successfully!");
+            fetchData(); // Refresh table after sending message
+        } else {
+            alert("❌ : " + data.error);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+
+    </script>
+
+</body>
+</html>
+
