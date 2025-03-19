@@ -625,7 +625,7 @@ def refresh_session():
 
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template('home page.html')
+    return render_template('index_new.html')
 
 @app.route('/chart', methods=['GET'])
 def chart():
