@@ -35,7 +35,7 @@ app.config['MAIL_USERNAME'] = 'attendancemanagementsystem111@gmail.com'  # Repla
 app.config['MAIL_PASSWORD'] = "mmfp udqh hbgu cjuy"  # Use an App Password if 2FA is enabled
 app.config['MAIL_DEFAULT_SENDER'] = 'attendancemanagementsystem111@gmail.com'
 
-mail = Mail(app)
+# mail = Mail(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
