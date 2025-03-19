@@ -19,7 +19,7 @@ import time
 # import pyautogui
 
 
-app = Flask(__name__, template_folder='/templates')
+app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = '2004'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ams.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
