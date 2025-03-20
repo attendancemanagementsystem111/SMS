@@ -4,51 +4,11 @@
   <title>College Calendar</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
   <style>
-/* body {
- 
-    background-color: #2b5075;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    color: #ffffff;
-} */
+
 body {
     background: radial-gradient(circle,   #254b72, #000428) ;
     color: white;
 }
-
-
-/* @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
-
-/* Apply staggered animations */
-/* .profile {
-  top:2vh;
-  opacity: 0;
-  animation: fadeIn 1.5s ease-in-out forwards;
-  animation-delay: 0.2s;
-}
-
-.atd {
-  opacity: 0;
-  animation: fadeIn 1.5s ease-in-out forwards;
-  animation-delay: 0.5s;
-}
-
-.container {
-  opacity: 0;
-  animation: fadeIn 1.5s ease-in-out forwards;
-  animation-delay: 1s;
-} */
 
     .profile {
       
@@ -240,6 +200,137 @@ body {
        h2{
         color: #ffffff;
        }
+
+       /* resoponsive */
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar, .events {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .profile {
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .profile img {
+    margin-bottom: 10px;
+  }
+
+  .profile-details {
+    align-items: left;
+  }
+
+  .atd{
+    height: max-content;
+  }
+  #atandpie {
+    flex-direction: row;
+    align-items: center;
+  }
+.atda{
+  text-align: left;
+}
+  .attendance_details {
+    text-align: left;
+  }
+
+  #chartContainer {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .profile {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .calendar th, .calendar td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .dropdown-menu {
+    width: 150px;
+  }
+
+  .events h1 {
+    font-size: 22px;
+  }
+
+  #atandpie {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .atd {
+    width: 90%;
+  }
+
+  #chartContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .profile {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .profile img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .menu-button {
+    font-size: 12px;
+  }
+
+  .calendar th, .calendar td {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .events h1 {
+    font-size: 18px;
+  }
+
+  .events p {
+    font-size: 14px;
+  }
+
+  .attendance_details {
+    font-size: 14px;
+  }
+
+  .atd {
+    width: 95%;
+  }
+
+  #chartContainer {
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
