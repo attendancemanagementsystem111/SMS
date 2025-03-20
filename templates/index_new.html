@@ -63,40 +63,7 @@
         font-size: 24px;
         letter-spacing: 1px;
     }
-    .navbar {
-        
-            position: sticky;
-            top: 0;
-            
-            width: 100%;
-            z-index: 1000;
-            background: rgb(49, 54, 60);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .navbar-nav .nav-link {
-            color: rgb(255, 255, 255);
-            margin-right: 60px;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background-color: #0d6efd;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #0d6efd;
-        }
-        .navbar-nav .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
+    
         .container h3{
             color: rgb(255, 255, 255);
         }
@@ -386,13 +353,395 @@ margin-top: 40px;
     opacity: 1;
     transform: translateY(0);
 }
+       /* Responsive Design */
+
+
+
+
+       
+/* Small Devices (Phones) */
+@media (max-width: 576px) {
+    /* General Styles */
+    body {
+        font-size: 14px;
+    }
+
+    /* Navbar */
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+    .btn-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Hero Section */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+        margin: 10px;
+    }
+
+    /* Cards */
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .title {
+        margin-left: 0; /* Center content for small screens */
+    }
+
+    .subtitle h1 {
+        font-size: 1.2rem; /* Further reduce font size */
+        margin-top: 10px;
+    }
+
+    .subtitle img {
+        margin-left: 35%;
+        width: 60px; /* Even smaller image */
+        height: 60px;
+    }
+    .card {
+        width: 90%;
+        height: auto;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .image_des {
+        font-size: 14px;
+    }
+
+    /* Title */
+    .title {
+        margin-left: 0;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subtitle {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .subtitle img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle h1 {
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    .slider {
+        height: 200px;
+    }
+
+    .slides img {
+        height: 200px;
+    }
+    /* Footer */
+    footer {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    /* Navbar */
+    .navbar {
+        padding: 15px;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 20px;
+    }
+
+    /* Hero Section */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .hero-image img {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    /* Title */
+    .title {
+        margin-left: 50px;
+        text-align: left;
+    }
+
+    .subtitle h1 {
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+    .subtitle img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .slider {
+        height: 250px;
+    }
+
+    .slides img {
+        height: 250px;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 14px;
+    }
+}
+
+/* Large Devices (Laptops & Desktops) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .navbar-nav .nav-link {
+        margin-right: 40px;
+    }
+
+    .hero-container {
+        flex-direction: row;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+        margin-left: 30px;
+    }
+
+    .subtitle h1 {
+        font-size: 28px;
+    }
+
+    .slider {
+        height: 280px;
+    }
+
+    .slides img {
+        height: 280px;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 16px;
+    }
+}
+
+/* Extra Large Devices (Large Screens)
+@media (min-width: 1201px) {
+    .navbar-nav .nav-link {
+        margin-right: 60px;
+    }
+
+    .hero-content {
+        width: 1200px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+        margin-left: 50px;
+    }
+
+
+    .slider {
+        height: 350px;
+    }
+
+    .navigation-slider button {
+        font-size: 22px;
+        padding: 12px;
+    }
+
+    .dot {
+        width: 14px;
+        height: 14px;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+} */
+ 
+
+/* Default Navbar */
+
+
+
+
+.navbar {
         
+        position: sticky;
+        top: 0;
+        
+        width: 100%;
+        z-index: 1000;
+        background: rgb(49, 54, 60);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links .nav-link {
+        color: rgb(255, 255, 255);
+        margin-right: 60px;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .nav-links .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background-color: #0d6efd;
+        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    }
+    .nav-links .nav-link:hover {
+        color: #0d6efd;
+    }
+    .nav-links.nav-link:hover::after {
+        width: 100%;
+        left: 0;
+    }
+    /*  */
+
+
+
+
+
+
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #333;
+    height: 70px;
+    color: white;
+
+}
+.nav-item {
+    margin-top: 7px;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+/* Hide menu button by default */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show menu button */
+    }
+
+    .nav-links {
+        display: none; /* Hide links by default */
+        flex-direction: column;
+        background: #222;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+}
+
+
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <nav class="navbar navbar-expand-lg ">
+
+    <nav class="navbar">
+        <div class="logo"><h3>SMS</h3></div>
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li><a class="btn btn-primary" href="/login">sign in</a></li>
+        </ul>
+    </nav>
+    
+
+
+
+    <!-- <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <h3>SMS</h3>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -400,17 +749,16 @@ margin-top: 40px;
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- <li class="nav-item"><a class="nav-link" href="#">Home</a></li> -->
+                    
                     <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="/login">sign in</a></li> -->
 
                     <li class="nav-item"><a class="btn btn-primary" href="/login">sign in</a></li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="full_main">
         <section class="hidden-section">
@@ -528,6 +876,18 @@ margin-top: 40px;
 
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+});
+
+
+
     particlesJS("particles-js", {
         particles: {
             number: { value: 100, density: { enable: true, value_area: 1000 } },
