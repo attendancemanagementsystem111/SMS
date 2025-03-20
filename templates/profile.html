@@ -80,6 +80,7 @@ body {
   justify-content: center;
   transition: transform 0.3s ease;
   position: relative;
+  height: max-content;
 }
 
 /* .profile-container:hover {
@@ -202,6 +203,83 @@ width:150vh;
   display: flex; 
   flex-direction: column;
 }
+
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .profile-container {
+    width: 100%;
+    padding: 20px;
+    height: 700px;
+  }
+  .info-box {
+    flex-direction: column;
+    text-align: center;
+  }
+  .edit-icon {
+    top: 70%;
+    right: -5px;
+    font-size: 10px;
+  }
+  .logout-button a {
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 8px;
+  }
+  .info-text p {
+    font-size: 14px;
+    text-align: left;
+  }
+  .qr-box {
+    margin-top: 20px;
+    height: max-content;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .profile-container {
+    width: 100%;
+    padding: 15px;
+    height: 600px;
+  }
+  .info-text p {
+    font-size: 14px;
+    text-align: left;
+  }
+  .qr-box {
+    margin-top: 20px;
+    height: max-content;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .full-body{
+    margin-top: 100px;
+  }
+  .header h1 {
+    font-size: 18px;
+  }
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+  .edit-icon {
+    top: 70%;
+    right: -5px;
+    font-size: 10px;
+  }
+  .logout-button a {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+
   </style>
 </head>
 <body>
